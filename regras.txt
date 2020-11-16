@@ -1,0 +1,68 @@
+REGRAS PARA MULTIJOGADORES
+
+informar o numero de jogadores
+cada jogador deve informar o nome, ou caso nao informe, recebe o nome JOGADOR#N
+o numero de jogos vai ser igual o numero de jogadores.
+
+um dos jogadores deve informar a palavra para os demais tentarem adivinhar na sequencia.
+Acertar 1 letra vale 1ponto por carectere;
+acertar a palavra vale 2pontos por caractere restante;
+	
+	exemplo:
+	3 jogadores: haverá 3 jogos
+	
+	JOGO 1
+	jogador 1 cria a palavra para forca;
+
+	1 rodada:
+	jogador 2 inicia informando uma letra;
+	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	ao fim da jogada é solicitado se deseja chutar a palavra;
+		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+	jogador 3 inicia informando uma letra (...);
+	
+	proxima rodada segue a mesma logica: jogador 2, jogador 3.
+	
+
+	JOGO 2
+	jogador 2 cria a palavra para forca;
+
+	1 rodada:
+	jogador 3 inicia informando uma letra;
+	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	ao fim da jogada é solicitado se deseja chutar a palavra;
+		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+	jogador 1 inicia informando uma letra (...);
+	
+	proxima rodada segue a mesma logica: jogador 3, jogador 1.
+
+	JOGO 3
+	jogador 3 cria a palavra para forca;
+	1 rodada:
+	jogador 1 inicia informando uma letra;
+	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	ao fim da jogada é solicitado se deseja chutar a palavra;
+		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+	jogador 2 inicia informando uma letra (...);
+	
+	proxima rodada segue a mesma logica: jogador 1, jogador 2.
+
+
+Dessa forma, a ordem das jogadas e rodadas é definida a partir da sequencia dos próprios jogadores, de modo que o primeiro jogador é o primeiro seguinte aquele que criou a palavra a ser adivinhada.
+O numero de rodadas é igual a 2x o numero de caracteres da palvra.
+caso acabe o numero de rodadas e ngm acerte a palavra, o jogador que criou a palavra recebe 2pontos por caractere da palavra, mesmo que alguém tenha acertado alguma letra da palavra (essa pessoa continua com os pontos referentes ao acerto da letra).
+
+	por exemplo
+	palavra JOGO
+	numero de rodadas = 8;
+	caso ngm acerte a palavra o jogador que criou ganha 2x4 = 8pontos;
+	algum jogador acertou a letra "O", que aparece 2 vezes, recebe portanto 2x1pontos = 2 pontos.
+
+Ao final de todos os jogos, é gerado um placar e o vencedor é aquele que possuir mais pontos; o nome e os pontos do vencedor é salvo num placar global
+
+
+REGRAS PARA JOGADOR INDIVIDUAL
+
