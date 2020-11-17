@@ -6,7 +6,8 @@ o numero de jogos vai ser igual o numero de jogadores.
 
 um dos jogadores deve informar a palavra para os demais tentarem adivinhar na sequencia.
 Acertar 1 letra vale 1ponto por carectere;
-acertar a palavra vale 2pontos por caractere restante;
+Errar 1 letra desenha uma parte do corpo do enforcado e dá +1 ponto ao criador da palavra;
+acertar a palavra vale 2pontos por caracteres restantes;
 	
 	exemplo:
 	3 jogadores: haverá 3 jogos
@@ -17,6 +18,7 @@ acertar a palavra vale 2pontos por caractere restante;
 	1 rodada:
 	jogador 2 inicia informando uma letra;
 	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
 		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
@@ -31,6 +33,7 @@ acertar a palavra vale 2pontos por caractere restante;
 	1 rodada:
 	jogador 3 inicia informando uma letra;
 	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
 		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
@@ -43,6 +46,7 @@ acertar a palavra vale 2pontos por caractere restante;
 	1 rodada:
 	jogador 1 inicia informando uma letra;
 	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
+	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
 		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
@@ -52,16 +56,46 @@ acertar a palavra vale 2pontos por caractere restante;
 
 
 Dessa forma, a ordem das jogadas e rodadas é definida a partir da sequencia dos próprios jogadores, de modo que o primeiro jogador é o primeiro seguinte aquele que criou a palavra a ser adivinhada.
-O numero de rodadas é igual a 2x o numero de caracteres da palvra.
-caso acabe o numero de rodadas e ngm acerte a palavra, o jogador que criou a palavra recebe 2pontos por caractere da palavra, mesmo que alguém tenha acertado alguma letra da palavra (essa pessoa continua com os pontos referentes ao acerto da letra).
+O numero de erros possiveis é igual a 7 (cabeça, tronco, braço esq, braço dir, cintura, perna esq, perna direita).
+caso acabe o numero de rodadas e ngm acerte a palavra, o jogador que criou a palavra recebe os pontos do jogador que causou o ultimo erro (ultima parte do corpo do enforcado), os demais jogadores conservam seus pontos (pontos referentes ao acerto da letra).
 
 	por exemplo
 	palavra JOGO
-	numero de rodadas = 8;
-	caso ngm acerte a palavra o jogador que criou ganha 2x4 = 8pontos;
-	algum jogador acertou a letra "O", que aparece 2 vezes, recebe portanto 2x1pontos = 2 pontos.
+	caso ngm acerte a palavra o jogador (completar o desenho da forca) que criou ganha os pontos referentes aos erros (7pontos) + os pontos do jogador que errou a ultima letra;
+	se algum jogador acertou a letra "O", que aparece 2 vezes, recebe portanto 2x1pontos = 2 pontos.
 
-Ao final de todos os jogos, é gerado um placar e o vencedor é aquele que possuir mais pontos; o nome e os pontos do vencedor é salvo num placar global
+Ao final de todos os jogos, é gerado um PLACAR FINAL com o nome de cada jogador, palavra criada e pontos totais por jogo e o vencedor é aquele que possuir mais pontos; o nome e os pontos do vencedor é salvo num placar global que exibe os melhores jogadores em ordem decrescente de pontuacao; as palavras que não foram adivinhadas serao salvas no placar se SUPER PALAVRAS abaixo do placar de jogadores.
+
+	JOGO 1
+	PALAVRA		PALAVRA DO JOGADOR 1
+	JOGADOR 1	X PONTOS DO JOGO
+	JOGADOR 2	X PONTOS DO JOGO
+	JOGADOR 3	X PONTOS DO JOGO
+
+	JOGO 2
+	PALAVRA		PALAVRA DO JOGADOR 2
+	JOGADOR 1	X PONTOS DO JOGO
+	JOGADOR 2	X PONTOS DO JOGO
+	JOGADOR 3	X PONTOS DO JOGO
+
+	JOGO 3
+	PALAVRA		PALAVRA DO JOGADOR 3
+	JOGADOR 1	X PONTOS DO JOGO
+	JOGADOR 2	X PONTOS DO JOGO
+	JOGADOR 3	X PONTOS DO JOGO
+
+	PLACAR FINAL:
+	JOGADOR 1	120 PONTOS TOTAIS
+	JOGADOR 2	150 PONTOS TOTAIS (VENCEDOR)
+	JOGADOR 3	90 PONTOS TOTAIS
+
+O placar global, quer será salvo na memoria do pc e carregado toda vez que executado o jogo ficaria da seguinte forma:
+
+	PLACAR GLOBAL
+	JOGADOR 2 150 PONTOS
+
+	SUPER PALAVRAS
+	PALAVRA DO JOGADOR 3
 
 
 REGRAS PARA JOGADOR INDIVIDUAL
