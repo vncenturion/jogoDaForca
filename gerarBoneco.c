@@ -3,7 +3,7 @@
 int main(void) 
 {
   
-	printf("\nParabéns, JOGADOR X ganhou!\n\n");
+	printf("\nParabéns, [nome do jogador] ganhou!\n\n");
 	printf("       ___________      \n");
 	printf("      '.=========.'     \n");
 	printf("      .-\\:      /-.    \n");
@@ -15,7 +15,7 @@ int main(void)
 	printf("         _.' '._        \n");
 	printf("        '======='       \n\n");
 
-	printf("\nPuxa, JOGADOR X foi eliminado!\n\n");
+	printf("\nPuxa, [nome do jogador] foi eliminado!\n\n");
 	printf("    .--------------.         \n");
 	printf("   /                \\      \n");
 	printf("  /                  \\    \n");
@@ -31,7 +31,7 @@ int main(void)
 	printf("     \\___________/         \n\n");
 
 
-	printf("DESENHO DA FORCA 6\n\n");
+	printf("DESENHO DA FORCA 7\n\n");
 	printf("xxxxxxxxxxxx\n");
 	printf("||  //     |\n");
 	printf("|| //     ( )\n");
