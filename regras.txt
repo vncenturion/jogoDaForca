@@ -21,7 +21,7 @@ acertar a palavra vale 2pontos por caracteres restantes;
 	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
 	jogador 3 inicia informando uma letra (...);
 	
 	proxima rodada segue a mesma logica: jogador 2, jogador 3.
@@ -36,7 +36,7 @@ acertar a palavra vale 2pontos por caracteres restantes;
 	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
 	jogador 1 inicia informando uma letra (...);
 	
 	proxima rodada segue a mesma logica: jogador 3, jogador 1.
@@ -49,7 +49,7 @@ acertar a palavra vale 2pontos por caracteres restantes;
 	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
 	ao fim da jogada é solicitado se deseja chutar a palavra;
 		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por letra que faltava;
+		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
 	jogador 2 inicia informando uma letra (...);
 	
 	proxima rodada segue a mesma logica: jogador 1, jogador 2.
