@@ -1,95 +1,76 @@
-REGRAS PARA MULTIJOGADORES
+1.1	Regras para multijogadores
 
-informar o numero de jogadores
-cada jogador deve informar o nome, ou caso nao informe, recebe o nome JOGADOR#N
-o numero de jogos vai ser igual o numero de jogadores.
+Sequência:
+Deve-se informar o número de jogadores e o nome de cada jogador. Caso não o informe, recebe o nome “Jogador #n”.
+O número de jogos vai ser igual o número de jogadores.
+Para cada jogo, um dos jogadores deve informar uma palavra para os demais tentarem adivinhar na sequência. Por consequência, observe-se que o jogador que informa a palavra não participa desse jogo.
+A ordem dos jogos e rodadas é definida a partir da sequência dos próprios jogadores, de modo que o primeiro jogador é o primeiro seguinte aquele que criou a palavra a ser adivinhada.
+O número máximo de erros possíveis é igual a 7 (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda e perna direita).
+Caso acabe o número de rodadas e ninguém acerte a palavra, o jogador que criou a palavra recebe os pontos do jogador que causou o último erro (última parte do corpo do enforcado), os demais jogadores conservam seus pontos (pontos referentes ao acerto da letra).
 
-um dos jogadores deve informar a palavra para os demais tentarem adivinhar na sequencia.
-Acertar 1 letra vale 1ponto por carectere;
-Errar 1 letra desenha uma parte do corpo do enforcado e dá +1 ponto ao criador da palavra;
-acertar a palavra vale 2pontos por caracteres restantes;
+Sistema de pontuação:
+Acertar uma letra vale +10 pontos para cada vez que a letra aparece na palavra;
+Errar 1 letra faz com que o número de erros permitidos (7 no total) diminua 1, desenhando uma parte do corpo do enforcado (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda, perna direita), e dá +10 pontos ao criador da palavra;
+Acertar a palavra vale +20 pontos por cada caractere restante ao jogador;
 	
-	exemplo:
-	3 jogadores: haverá 3 jogos
+Exemplo para 3 jogadores (haverá 3 jogos):
 	
-	JOGO 1
-	jogador 1 cria a palavra para forca;
+JOGO 1
 
-	1 rodada:
-	jogador 2 inicia informando uma letra;
-	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
-	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
-	ao fim da jogada é solicitado se deseja chutar a palavra;
-		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
-	jogador 3 inicia informando uma letra (...);
+Jogador 1 cria a palavra para forca;
+
+1ª rodada:
+
+Jogador 2 inicia informando uma letra;
+	Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
+	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado.
+Ao fim da jogada é solicitado se deseja chutar a palavra;
+	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
+
+Jogador 3 inicia informando uma letra (...);
 	
-	proxima rodada segue a mesma logica: jogador 2, jogador 3.
+2ª rodada: (segue a mesma lógica: jogador 2, jogador 3.)
+
+JOGO 2
+
+Jogador 2 cria a palavra para forca;
+
+1ª rodada:
+
+Jogador 3 inicia informando uma letra;
+Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
+	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado
+Ao fim da jogada é solicitado se deseja chutar a palavra;
+	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
+
+Jogador 1 inicia informando uma letra (...);
 	
+2ª rodada: (segue a mesma lógica: jogador 3, jogador 1.)
 
-	JOGO 2
-	jogador 2 cria a palavra para forca;
+JOGO 3
 
-	1 rodada:
-	jogador 3 inicia informando uma letra;
-	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
-	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
-	ao fim da jogada é solicitado se deseja chutar a palavra;
-		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
-	jogador 1 inicia informando uma letra (...);
+Jogador 3 cria a palavra para forca;
+
+1ª rodada:
+
+Jogador 1 inicia informando uma letra;
+Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
+	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado
+Ao fim da jogada é solicitado se deseja chutar a palavra;
+	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
+	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
+
+Jogador 2 inicia informando uma letra (...);
 	
-	proxima rodada segue a mesma logica: jogador 3, jogador 1.
+2ª rodada: (segue a mesma lógica: jogador 1, jogador 2.)
 
-	JOGO 3
-	jogador 3 cria a palavra para forca;
-	1 rodada:
-	jogador 1 inicia informando uma letra;
-	caso a palavra contenha a letra, ganha +1 ponto por vez que essa letra aparece;
-	caso a palavra não contenha a letra, o jogador que criou a palavra ganha +1 ponto e o programa desenha uma parte do corpo do enforcado.
-	ao fim da jogada é solicitado se deseja chutar a palavra;
-		se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-		se acertar, o jogo acaba e recebe 2 pontos por cada letra que faltava;
-	jogador 2 inicia informando uma letra (...);
-	
-	proxima rodada segue a mesma logica: jogador 1, jogador 2.
-
-
-Dessa forma, a ordem das jogadas e rodadas é definida a partir da sequencia dos próprios jogadores, de modo que o primeiro jogador é o primeiro seguinte aquele que criou a palavra a ser adivinhada.
-O numero de erros possiveis é igual a 7 (cabeça, tronco, braço esq, braço dir, cintura, perna esq, perna direita).
-caso acabe o numero de rodadas e ngm acerte a palavra, o jogador que criou a palavra recebe os pontos do jogador que causou o ultimo erro (ultima parte do corpo do enforcado), os demais jogadores conservam seus pontos (pontos referentes ao acerto da letra).
-
-	por exemplo
-	palavra JOGO
-	caso ngm acerte a palavra o jogador (completar o desenho da forca) que criou ganha os pontos referentes aos erros (7pontos) + os pontos do jogador que errou a ultima letra;
-	se algum jogador acertou a letra "O", que aparece 2 vezes, recebe portanto 2x1pontos = 2 pontos.
-
-Ao final de todos os jogos, é gerado um PLACAR FINAL com o nome de cada jogador, palavra criada e pontos totais por jogo e o vencedor é aquele que possuir mais pontos; o nome e os pontos do vencedor é salvo num placar global que exibe os melhores jogadores em ordem decrescente de pontuacao; as palavras que não foram adivinhadas serao salvas no placar se SUPER PALAVRAS abaixo do placar de jogadores.
-
-	JOGO 1
-	PALAVRA		PALAVRA DO JOGADOR 1
-	JOGADOR 1	X PONTOS DO JOGO
-	JOGADOR 2	X PONTOS DO JOGO
-	JOGADOR 3	X PONTOS DO JOGO
-
-	JOGO 2
-	PALAVRA		PALAVRA DO JOGADOR 2
-	JOGADOR 1	X PONTOS DO JOGO
-	JOGADOR 2	X PONTOS DO JOGO
-	JOGADOR 3	X PONTOS DO JOGO
-
-	JOGO 3
-	PALAVRA		PALAVRA DO JOGADOR 3
-	JOGADOR 1	X PONTOS DO JOGO
-	JOGADOR 2	X PONTOS DO JOGO
-	JOGADOR 3	X PONTOS DO JOGO
-
-	PLACAR FINAL:
-	JOGADOR 1	120 PONTOS TOTAIS
-	JOGADOR 2	150 PONTOS TOTAIS (VENCEDOR)
-	JOGADOR 3	90 PONTOS TOTAIS
-
-O placar global, quer será salvo na memoria do pc e carregado toda vez que executado o jogo ficaria da seguinte forma:
+Sistema de ranking:
+Ao final de todos os jogos, é gerado um PLACAR FINAL com o nome de cada jogador, palavra criada e pontos totais por jogo e o vencedor é aquele que possuir mais pontos; 
+O nome e os pontos do vencedor são salvos num placar global que exibe os melhores jogadores em ordem decrescente de pontuação; 
+As palavras que não foram adivinhadas serão salvas no placar se SUPER PALAVRAS abaixo do placar de jogadores.
+O placar global, quer será salvo na memória do pc e carregado toda vez que executado o jogo ficaria da seguinte forma:
 
 	PLACAR GLOBAL
 	JOGADOR 2 150 PONTOS
