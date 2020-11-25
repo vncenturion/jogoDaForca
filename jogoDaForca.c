@@ -4,36 +4,34 @@
 
 int imprimeCranio (void)
 {
-	
-	printf("    .--------------.         \n");
-	printf("   /                \\      \n");
-	printf("  /                  \\    \n");
-	printf(" |  \\\\ //    \\\\ //   |     \n");
-	printf(" |    /        /     |      \n");
-	printf(" |  // \\\\    // \\\\   |      \n");
-	printf(" |                   |      \n");
-	printf(" \\__      XXX      __/     \n");
-	printf("   |\\     XXX     /|       \n");
-	printf("   | |           | |        \n");
-	printf("   | |[][][][][][] |        \n");
-	printf("    \\             _/       \n");
-	printf("     \\___________/         \n");
-
+	printf("         .--------------.         \n");
+	printf("        /                \\      \n");
+	printf("       /                  \\    \n");
+	printf("      |  \\\\ //    \\\\ //   |     \n");
+	printf("      |    /        /     |      \n");
+	printf("      |  // \\\\    // \\\\   |      \n");
+	printf("      |                   |      \n");
+	printf("      \\__      XXX      __/     \n");
+	printf("        |\\     XXX     /|       \n");
+	printf("        | |           | |        \n");
+	printf("        | |[][][][][][] |        \n");
+	printf("         \\ [][][][][][]_/       \n");
+	printf("          \\___________/         \n");
 	return 0;
 }
 
 int imprimeTrofeu (void)
 {
-	printf("       ___________      \n");
-	printf("      '.=========.'     \n");
-	printf("      .-\\:      /-.    \n");
-	printf("     |( |:.     | )|    \n");
-	printf("      '-|:.     |-'     \n");
-	printf("        \\::.    /      \n");
-	printf("         '::. .'        \n");
-	printf("           ) (          \n");
-	printf("         _.' '._        \n");
-	printf("        '======='       \n");
+	printf("          ___________      \n");
+	printf("         '.=========.'     \n");
+	printf("         .-\\:      /-.    \n");
+	printf("        |( |:.     | )|    \n");
+	printf("         '-|:.     |-'     \n");
+	printf("           \\::.    /      \n");
+	printf("            '::. .'        \n");
+	printf("              ) (          \n");
+	printf("            _.' '._        \n");
+	printf("           '======='       \n");
 
 	return 1;
 }
@@ -219,7 +217,7 @@ int telaInical()
 	puts("     @@        @@#     @@@  @@@    @@&  @@@            @@ @@");
 	puts("     @@@@@@@   @@      .@@  @@@@@@@@@   @@            @@   @@");
 	puts("     @@        @@      .@@  @@@  @@*    @@           @@@@@@@@@");
-	puts("     @@         @@@@@@@@    @@@   @@@    @@@@@@@@@  @@@     /@@");
+	puts("     @@         @@@@@@@@    @@@   @@@@   @@@@@@@@@  @@@     /@@");
 	puts("");
 	puts("");
 	puts("                              xxxxxxxxxxxx");
@@ -240,9 +238,7 @@ int telaInical()
 	puts("");
 	puts("");
 	puts("                              <PRESSIONE ENTER>");
-
-	
-    
+	getchar();
     return 0;
 }
 
@@ -262,22 +258,23 @@ int telaMenu()
 	puts("     @@        @@#     @@@  @@@    @@&  @@@            @@ @@");
 	puts("     @@@@@@@   @@      .@@  @@@@@@@@@   @@            @@   @@");
 	puts("     @@        @@      .@@  @@@  @@*    @@           @@@@@@@@@");
-	puts("     @@         @@@@@@@@    @@@   @@@    @@@@@@@@@  @@@     /@@");
+	puts("     @@         @@@@@@@@    @@@   @@@@   @@@@@@@@@  @@@     /@@");
 	puts("");
 	puts("");
 	puts("");
 	puts("");
 	puts("               MENU (SELECIONE O TIPO DE JOGO)");
     puts("");
-    puts("                    1 - JOGO MULTI JOGADOR");
+    puts("                    1 - JOGO MULTI JOGADOR ( 1 VS 1 )");
     puts("                    2 - JOGO INDIVIDUAL");
     puts("");
 	puts("                    3 - PONTUACOES");
 	puts("");
+	puts("                    4 - SAIR");
 	puts("");
 	puts("");
 	puts("");
-	puts("                    CARAÚBAS; CENTURION; FRANCA.");
+	puts("                    CARAÚBAS; CASTRO; CENTURION; FRANCA.");
 	puts("                    UNIPE, 2020.");
 	puts("");
     return 1;
@@ -347,7 +344,6 @@ int buscaErro(char palavra[30], char letra)
 }
 
 int imprimeLetraErrada (char palavra[7])
-
 {
 	int nLetras = strlen(palavra);
 	int i;
@@ -362,9 +358,10 @@ int imprimeLetraErrada (char palavra[7])
 	
 	if (nLetras>0)
 	{
-		printf("%c.\n", palavra[i]);
+		printf("%c.", palavra[i]);
 	}
-	puts("");
+	puts(" ");
+	puts(" ");
 
 	return 1;
 }
@@ -391,67 +388,162 @@ int imprimePalavra (char palavra[30], int acertos[30])
 	return 1;
 }
 
+int jogoMultiplayer ()
+{
+	int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	int * nAcertos;
+	int i, erros=0, totalPontos = 0, maxPontos = 0, tamPalavra=0, controle=0, venceu=0;
+	char letraErrada[7] = "\0";
+	char letra=' ';
+	char palavra[30]="\0";
+	char letraCerta[30] = "\0";
+	
+	printf("Digite a palavra a ser adivinhada: ");
+	scanf("%[ -~]", palavra);
+	tamPalavra = strlen (palavra);
+	maxPontos = tamPalavra * 10;
+
+	do
+	{
+		
+		system("clear");
+		printf("     max pontos: %d\n", maxPontos);
+	printf("     total de pontos: %d\n", totalPontos);
+		imprimeForca(erros);
+		imprimeLetraErrada(letraErrada);
+		imprimePalavra(palavra, acertoTotal);
+		puts("");
+		
+		do 
+		{
+			printf("     Digite uma letra da palavra: ");
+			scanf(" %c", &letra);
+		
+			for (i=0, controle=0; i<tamPalavra; i++)
+			{
+				if (letraCerta[i]==letra)
+				{
+					controle+=1;
+				}
+			}
+			printf("     Letra já digitada!\n");
+		} while (controle!=0);
+
+		strcat(letraCerta, &letra);
+		
+
+		nAcertos = buscaAcertos(palavra, letra, acertoTotal);
+		
+
+		for (i=0; i<30; i++)
+		{
+			acertoTotal[i]=nAcertos[i];
+		}
+
+		if (buscaErro(palavra, letra)==1)
+		{
+			letraErrada[erros] = letra;
+		}
+		
+		erros += buscaErro(palavra, letra);
+		totalPontos += buscaPontos(palavra, letra);
+
+	} while ((erros<7)&&(totalPontos<maxPontos));
+	
+	system("clear");
+	printf("     max pontos: %d\n", maxPontos);
+	printf("     total de pontos: %d\n", totalPontos);
+	imprimeForca(erros);
+	imprimeLetraErrada(letraErrada);
+	imprimePalavra(palavra, acertoTotal);
+	puts("");
+	puts("\n     FIM DO JOGO!");
+	puts("");
+	puts("");
+	puts("");
+
+	if (erros>=7)
+	{
+		venceu=0;
+		puts("");
+		imprimeCranio();
+		puts("");
+		puts("           VOCÊ PERDEU!");
+		puts("");
+	}
+	if (totalPontos>=maxPontos)
+	{
+		venceu=1;
+		imprimeTrofeu();
+		puts("");
+		puts("     PARABENS, VOCÊ VENCEU!");
+		puts("");
+	}
+	
+	puts("     <PRESSIONE ENTER PARA VOLTAR AO MENU>");
+	getchar();
+	getchar();
+	
+  	return 0;
+}
 
 
 
 int main(void) 
 {
-  	
-	char controle='n';
-  	int nivel=0;
-
- 	/*while (controle!='s')
-  	{
-		system("clear");
-		imprimeTrofeu();
-        puts("\n");
-        imprimeCranio();
-        puts("\n");
-		printf("nivel da forca: ");
-		scanf(" %d", &nivel);
-		setbuf(stdin, NULL);
-
-		imprimeForca(nivel);
-        
-		printf("\nDeseja sair? ");
-		scanf(" %c", &controle);
-		setbuf(stdin, NULL);
-  	}*/
-	
-	/*
+  	int selecionaMenu=0, sair=0;
+	char confirma='n';
 	telaInical();
-	getchar();
-	telaMenu();
-	*/
-	
-	int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-	int * nAcertos;
-	int i, erros=0;
-	char letraErrada[7] = "\0";
-	char letra='b';
-	char palavra[30]="constituicao";
-	
-	
-	nAcertos = buscaAcertos(palavra, letra, acertoTotal);
-	
 
-	for (i=0; i<30; i++)
+	do
 	{
-		acertoTotal[i]=nAcertos[i];
-	}
+		system("clear");
+		telaMenu();
+		
+		printf("\n\n\n     Selecione o modo de jogo: ");
+		scanf("%d", &selecionaMenu);
 
-	if (buscaErro(palavra, letra)==1)
-	{
-		letraErrada[erros] = letra;
-	}
-	
-	erros += buscaErro(palavra, letra);
+		switch (selecionaMenu)
+		{
 
-	imprimeForca(erros);
-	imprimeLetraErrada(letraErrada);
-	imprimePalavra(palavra, acertoTotal);
+			case 1:
+				system("clear");
+				getchar();
+				printf("\n     MULTI JOGADOR ( 1 VS 1 )");
+				puts("");
+				imprimeForca(0);
+				puts("");
+				jogoMultiplayer ();
+
+			break;
+			case 2:
+			break;
+			case 3:
+			break;
+			case 4:
+				printf("\n     Deseja sair? (s ou n): ");
+				scanf(" %c", &confirma);
+				if (confirma=='s')
+				{
+					sair=1;
+				}
+				else
+				{
+					sair=0;
+				}
+			break;
+			default:
+				printf("\n     Opcao invalida!");
+				getchar();
+				getchar();
+			break;
+		}
+
+	} while (sair==0);
 	
-	puts("");
+	system("clear");
+	printf("\n\n\n\n\n     OBRIGADO POR JOGAR!");	
 
   	return 0;
+
 }
