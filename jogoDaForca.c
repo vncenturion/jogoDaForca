@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
+#include <locale.h>
+
+
+
+
 
 int imprimeCranio (void)
 {
@@ -388,6 +394,74 @@ int imprimePalavra (char palavra[30], int acertos[30])
 	return 1;
 }
 
+char * sorteiaPalavra()
+{
+	srand(time(0));
+	int nivel = rand() % 3;
+	int sorteio = rand() % 10;
+	char palavraSorteada[30];
+	char *palavra=palavraSorteada;
+
+	
+	char *palavraFacil[10];
+	
+	palavraFacil[0] = "matriz";
+	palavraFacil[1] = "vetor";
+	palavraFacil[2] = "malloc";
+	palavraFacil[3] = "struct";
+	palavraFacil[4] = "lwan";
+	palavraFacil[5] = "pascal";
+	palavraFacil[6] = "enigma";
+	palavraFacil[7] = "turing";
+	palavraFacil[8] = "edsac";
+	palavraFacil[9] = "moore";
+	
+	char *palavraNormal[10];
+	
+	palavraNormal[0] = "compilador";
+	palavraNormal[1] = "montadores";
+	palavraNormal[2] = "linguagem";
+	palavraNormal[3] = "neumann";
+	palavraNormal[4] = "processador";
+	palavraNormal[5] = "barramento";
+	palavraNormal[6] = "benchmarks";
+	palavraNormal[7] = "transistor";
+	palavraNormal[8] = "inversor";
+	palavraNormal[9] = "programa";
+	
+	char *palavraDificil[10];
+	
+	palavraDificil[0]= "registradores";
+	palavraDificil[1]= "interpretadores";
+	palavraDificil[2]= "processamento";
+	palavraDificil[3]= "microarquitetura";
+	palavraDificil[4]= "codificadores";
+	palavraDificil[5]= "decodificadores";
+	palavraDificil[6]= "demultiplexadores";
+	palavraDificil[7]= "multiplexadores";
+	palavraDificil[8]= "encapsulamento";
+	palavraDificil[9]= "transceptores";
+	
+	switch (nivel)
+	{
+		case 0:
+			strcpy (palavraSorteada, palavraFacil[sorteio]);
+		break;
+		case 1:
+			strcpy (palavraSorteada, palavraNormal[sorteio]);
+		break;
+		case 2:
+			strcpy (palavraSorteada, palavraDificil[sorteio]);
+		break;
+	}
+	/*
+	puts(palavra);
+	printf("nivel: %d; sorteio: %d\n", nivel, sorteio);
+	*/
+
+	return palavra;
+}
+
 int jogoMultiplayer ()
 {
 	int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -496,8 +570,7 @@ int jogoIndividual ()
 	char palavra[30]="\0";
 	char letraCerta[30] = "\0";
 	
-	printf("     Digite a palavra a ser adivinhada: ");
-	scanf("%[ -~]", palavra);
+	strcpy(palavra, sorteiaPalavra());
 	tamPalavra = strlen (palavra);
 	maxPontos = tamPalavra * 10;
 
@@ -676,7 +749,8 @@ int imprimeCreditos ()
 
 int main(void) 
 {
-  	int selecionaMenu=0, sair=0;
+  	setlocale(LC_ALL,"Portuguese");
+	int selecionaMenu=0, sair=0;
 	telaInical();
 
 	do
