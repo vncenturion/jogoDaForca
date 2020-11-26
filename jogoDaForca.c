@@ -5,8 +5,11 @@
 #include <locale.h>
 
 
-
-
+void flush_in()
+{ 
+    int ch;
+    while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){} 
+}
 
 int imprimeCranio (void)
 {
@@ -269,19 +272,22 @@ int telaMenu()
 	puts("");
 	puts("");
 	puts("");
-	puts("               MENU (SELECIONE O TIPO DE JOGO)");
+	puts("                      MENU (SELECIONE O TIPO DE JOGO)");
     puts("");
-    puts("                    1 - JOGO INDIVIDUAL");
-    puts("                    2 - JOGO MULTI JOGADOR ( 1 VS 1 )");
+	puts("");
+    puts("                     1 - JOGO INDIVIDUAL ( 1 VS. PC )");
+    puts("                    2 - JOGO MULTI JOGADOR ( 1 VS. 1 )");
     puts("");
-	puts("                    4 - PONTUACOES");
-	puts("");
-	puts("                    5 - SAIR");
+	puts("                              4 - PONTUACOES");
 	puts("");
 	puts("");
+	puts("                                5 - SAIR");
 	puts("");
-	puts("                    CARAÚBAS; CASTRO; CENTURION; FRANCA.");
-	puts("\n                              UNIPE, 2020.");
+	puts("");
+	puts("");
+	puts("");
+	puts("");
+	puts("                              UNIPE, 2020.");
 	puts("");
     return 1;
 }
@@ -400,15 +406,14 @@ char * sorteiaPalavra()
 	int nivel = rand() % 3;
 	int sorteio = rand() % 10;
 	char palavraSorteada[30];
-	char *palavra=palavraSorteada;
-
+	char *palavra = palavraSorteada;
 	
 	char *palavraFacil[10];
 	
 	palavraFacil[0] = "matriz";
 	palavraFacil[1] = "vetor";
 	palavraFacil[2] = "malloc";
-	palavraFacil[3] = "struct";
+	palavraFacil[3] = "strpuct";
 	palavraFacil[4] = "lwan";
 	palavraFacil[5] = "pascal";
 	palavraFacil[6] = "enigma";
@@ -474,6 +479,7 @@ int jogoMultiplayer ()
 	
 	printf("     Digite a palavra a ser adivinhada: ");
 	scanf("%[ -~]", palavra);
+	flush_in();
 	tamPalavra = strlen (palavra);
 	maxPontos = tamPalavra * 10;
 
@@ -481,7 +487,7 @@ int jogoMultiplayer ()
 	{
 		system("cls");
 		printf("     max pontos: %d\n", maxPontos);
-	printf("     total de pontos: %d\n", totalPontos);
+		printf("     total de pontos: %d\n", totalPontos);
 		imprimeForca(erros);
 		imprimeLetraErrada(letraErrada);
 		imprimePalavra(palavra, acertoTotal);
@@ -491,6 +497,7 @@ int jogoMultiplayer ()
 		{
 			printf("     Digite uma letra da palavra: ");
 			scanf(" %c", &letra);
+			flush_in();
 		
 			for (i=0, controle=0; i<tamPalavra; i++)
 			{
@@ -562,105 +569,129 @@ int jogoMultiplayer ()
 
 int jogoIndividual ()
 {
-	int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-	int * nAcertos;
-	int i, erros=0, totalPontos = 0, maxPontos = 0, tamPalavra=0, controle=0, venceu=0;
-	char letraErrada[7] = "\0";
-	char letra=' ';
-	char palavra[30]="\0";
-	char letraCerta[30] = "\0";
+	int pontosJogador = 0, venceu=1;
 	
-	strcpy(palavra, sorteiaPalavra());
-	tamPalavra = strlen (palavra);
-	maxPontos = tamPalavra * 10;
-
 	do
 	{
+		int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+		int * nAcertos;
+		int i, erros=0, totalPontos = 0, maxPontos = 0, tamPalavra=0, controle=0; 
+		char letraErrada[7] = "\0";
+		char letra=' ';
+		char palavra[30]="\0";
+		char letraCerta[30] = "\0";
+		
+		
+		strcpy(palavra, sorteiaPalavra());
+		tamPalavra = strlen (palavra);
+		maxPontos = tamPalavra * 10;
+
+		do
+		{
+			
+			system("cls");
+			printf("     max pontos da palavra: %d\n", maxPontos);
+			printf("     total de pontos obtidos: %d\n", totalPontos);
+			imprimeForca(erros);
+			imprimeLetraErrada(letraErrada);
+			imprimePalavra(palavra, acertoTotal);
+			puts("");
+			
+			do 
+			{
+
+				printf("     Digite uma letra da palavra: ");
+				scanf(" %c", &letra);
+				flush_in();
+			
+				for (i=0, controle=0; i<tamPalavra; i++)
+				{
+					if (letraCerta[i]==letra)
+					{
+						controle+=1;
+					}
+				}
+				printf("     Letra já digitada!\n");
+
+			} while (controle!=0);
+
+			strcat(letraCerta, &letra);
+			
+
+			nAcertos = buscaAcertos(palavra, letra, acertoTotal);
+			
+
+			for (i=0; i<30; i++)
+			{
+				acertoTotal[i]=nAcertos[i];
+			}
+
+			if (buscaErro(palavra, letra)==1)
+			{
+				letraErrada[erros] = letra;
+			}
+			
+			erros += buscaErro(palavra, letra);
+			totalPontos += buscaPontos(palavra, letra);
+
+		} while ((erros<7)&&(totalPontos<maxPontos));
+		
 		system("cls");
 		printf("     max pontos: %d\n", maxPontos);
-	printf("     total de pontos: %d\n", totalPontos);
+		printf("     total de pontos: %d\n", totalPontos);
 		imprimeForca(erros);
 		imprimeLetraErrada(letraErrada);
 		imprimePalavra(palavra, acertoTotal);
 		puts("");
-		
-		do 
+		puts("\n     FIM DO JOGO!");
+		puts("");
+		puts("");
+		puts("");
+		pontosJogador+=totalPontos;
+
+		if (erros>=7)
 		{
-			printf("     Digite uma letra da palavra: ");
-			scanf(" %c", &letra);
-		
-			for (i=0, controle=0; i<tamPalavra; i++)
-			{
-				if (letraCerta[i]==letra)
-				{
-					controle+=1;
-				}
-			}
-			printf("     Letra já digitada!\n");
-		} while (controle!=0);
-
-		strcat(letraCerta, &letra);
-		
-
-		nAcertos = buscaAcertos(palavra, letra, acertoTotal);
-		
-
-		for (i=0; i<30; i++)
-		{
-			acertoTotal[i]=nAcertos[i];
+			venceu=0;
+			puts("");
+			imprimeCranio();
+			puts("");
+			puts("           VOCÊ PERDEU!");
+			printf("TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
+			puts("");
+			puts("     <PRESSIONE ENTER PARA VOLTAR AO MENU>");
+			getchar();	
 		}
 
-		if (buscaErro(palavra, letra)==1)
+		if (totalPontos>=maxPontos)
 		{
-			letraErrada[erros] = letra;
+			venceu=1;
+			imprimeTrofeu();
+			puts("");
+			puts("          PARABENS, VOCÊ VENCEU!");
+			printf("        TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
+			puts("");
+			puts("     <PRESSIONE ENTER PARA CONTINUAR>");
+			getchar();
 		}
-		
-		erros += buscaErro(palavra, letra);
-		totalPontos += buscaPontos(palavra, letra);
 
-	} while ((erros<7)&&(totalPontos<maxPontos));
-	
-	system("cls");
-	printf("     max pontos: %d\n", maxPontos);
-	printf("     total de pontos: %d\n", totalPontos);
-	imprimeForca(erros);
-	imprimeLetraErrada(letraErrada);
-	imprimePalavra(palavra, acertoTotal);
-	puts("");
-	puts("\n     FIM DO JOGO!");
-	puts("");
-	puts("");
-	puts("");
+	} while (venceu==1);
 
-	if (erros>=7)
-	{
-		venceu=0;
-		puts("");
-		imprimeCranio();
-		puts("");
-		puts("           VOCÊ PERDEU!");
-		puts("");
-	}
-	if (totalPontos>=maxPontos)
-	{
-		venceu=1;
-		imprimeTrofeu();
-		puts("");
-		puts("     PARABENS, VOCÊ VENCEU!");
-		puts("");
-	}
-	
-	puts("     <PRESSIONE ENTER PARA VOLTAR AO MENU>");
-	getchar();
-	getchar();
-	
-  	return 0;
+	return pontosJogador;
 }
 
 int selecionaJogo (int jogo)
 {
 	int sair=0;
 	char confirma='n';
+	char nomeJogador[30]="\0";
+	int pontoJogador=0;
+	char *jogadorVencedor = nomeJogador;
+	
+	struct pontuacao
+	{
+		char nomeRanking[30];
+		int pontosRanking;
+	} resPontuacao;
 
 	switch (jogo)
 	{
@@ -668,13 +699,25 @@ int selecionaJogo (int jogo)
 		case 1:
 			system("cls");
 			getchar();
-			jogoIndividual();
+			puts("");
+			printf("\n     JOGO INDIVIDUAL ( 1 VS AI )");
+			puts("");
+			imprimeForca(0);
+			puts("");
+			printf("     Digite seu nome: ");
+			scanf("%[ -~]", nomeJogador);
+			flush_in();
+			resPontuacao.pontosRanking=jogoIndividual();
+			strcpy (resPontuacao.nomeRanking, nomeJogador);
+			printf("JOGADOR: %s fez %d PONTOS!",resPontuacao.nomeRanking,resPontuacao.pontosRanking);
+			getchar();
 			sair=0;
 			return sair;
 		break;
 		case 2:
 			system("cls");
 			getchar();
+			puts("");
 			printf("\n     MULTI JOGADOR ( 1 VS 1 )");
 			puts("");
 			imprimeForca(0);
@@ -692,6 +735,8 @@ int selecionaJogo (int jogo)
 		case 5:
 			printf("\n     Deseja sair? (s ou n): ");
 			scanf(" %c", &confirma);
+			flush_in();
+
 			if (confirma=='s')
 			{
 				sair=1;
@@ -703,7 +748,7 @@ int selecionaJogo (int jogo)
 			return sair;
 			break;
 		default:
-			printf("\n     Opcao invalida!");
+			printf("\n     Opção inválida!");
 			getchar();
 			getchar();
 			sair=0;
@@ -750,7 +795,7 @@ int imprimeCreditos ()
 int main(void) 
 {
   	setlocale(LC_ALL,"Portuguese");
-	int selecionaMenu=0, sair=0;
+	int tipoJogo=0, sair=0;
 	telaInical();
 
 	do
@@ -759,9 +804,10 @@ int main(void)
 		telaMenu();
 		
 		printf("\n\n\n     Selecione o modo de jogo: ");
-		scanf("%d", &selecionaMenu);
+		scanf("%d", &tipoJogo);
+		flush_in();
 
-		sair=selecionaJogo(selecionaMenu);
+		sair=selecionaJogo(tipoJogo);
 
 	} while (sair==0);
 	
