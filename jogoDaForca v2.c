@@ -880,8 +880,6 @@ int selecionaJogo (int jogo)
 	
 }
 
-
-
 int imprimeCreditos ()
 {
 	puts("");
