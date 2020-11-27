@@ -5,6 +5,7 @@
 #include <locale.h>
 
 
+
 void flush_in()
 { 
     int ch;
@@ -13,35 +14,34 @@ void flush_in()
 
 int imprimeCranio (void)
 {
-	printf("         .--------------.         \n");
-	printf("        /                \\      \n");
-	printf("       /                  \\    \n");
-	printf("      |  \\\\ //    \\\\ //   |     \n");
-	printf("      |    /        /     |      \n");
-	printf("      |  // \\\\    // \\\\   |      \n");
-	printf("      |                   |      \n");
-	printf("      \\__      XXX      __/     \n");
-	printf("        |\\     XXX     /|       \n");
-	printf("        | |           | |        \n");
-	printf("        | |[][][][][][] |        \n");
-	printf("         \\ [][][][][][]_/       \n");
-	printf("          \\___________/         \n");
+	printf("              .--------------.\n");
+	printf("             /                \\\n");
+	printf("            /                  \\\n");
+	printf("           |  \\\\ //    \\\\ //   |\n");
+	printf("           |    /        /     |\n");
+	printf("           |  // \\\\    // \\\\   |\n");
+	printf("           |                   |\n");
+	printf("           \\__      XXX      __/\n");
+	printf("             |\\     XXX     /|\n");
+	printf("             | |           | |\n");
+	printf("             | |[][][][][][] |\n");
+	printf("              \\ [][][][][][]_/\n");
+	printf("               \\___________/\n");
 	return 0;
 }
 
 int imprimeTrofeu (void)
 {
-	printf("          ___________      \n");
-	printf("         '.=========.'     \n");
-	printf("         .-\\:      /-.    \n");
-	printf("        |( |:.     | )|    \n");
-	printf("         '-|:.     |-'     \n");
-	printf("           \\::.    /      \n");
-	printf("            '::. .'        \n");
-	printf("              ) (          \n");
-	printf("            _.' '._        \n");
-	printf("           '======='       \n");
-
+	printf("               ___________\n");
+	printf("              '.=========.'\n");
+	printf("              .-\\:      /-.\n");
+	printf("             |( |:.     | )|\n");
+	printf("              '-|:.     |-'\n");
+	printf("                \\::.    /\n");
+	printf("                 '::. .' \n");
+	printf("                   ) (   \n");
+	printf("                 _.' '._ \n");
+	printf("                '======='\n");
 	return 1;
 }
 
@@ -275,13 +275,10 @@ int telaMenu()
 	puts("                      MENU (SELECIONE O TIPO DE JOGO)");
 	puts("");
 	puts("");
-	puts("                     1 - JOGO INDIVIDUAL ( 1 VS. PC )");
+	puts("                    1 - JOGO INDIVIDUAL ( 1 VS. PC )");
 	puts("                    2 - JOGO MULTI JOGADOR ( 1 VS. 1 )");
-	puts("");
-	puts("                              4 - PONTUACOES");
-	puts("");
-	puts("");
-	puts("                                5 - SAIR");
+	puts("                    3 - PONTUACOES");
+	puts("                    4 - SAIR");
 	puts("");
 	puts("");
 	puts("");
@@ -294,7 +291,8 @@ int telaMenu()
 
 int * buscaAcertos(char palavra[30], char letra, int acertos[30])
 {
-	static int nAcertos[30];
+	int nAcertos[30];
+	int *pAcertos = nAcertos;
 	int i=0;
 	
 	for (i=0; i<30; i++)
@@ -580,7 +578,7 @@ int jogoIndividual ()
 		char letra=' ';
 		char palavra[30]="\0";
 		char letraCerta[30] = "\0";
-		
+		int contadorLetras = 0;
 		
 		strcpy(palavra, sorteiaPalavra());
 		tamPalavra = strlen (palavra);
@@ -592,6 +590,7 @@ int jogoIndividual ()
 			system("cls");
 			printf("     max pontos da palavra: %d\n", maxPontos);
 			printf("     total de pontos obtidos: %d\n", totalPontos);
+			printf("%s", palavra);
 			imprimeForca(erros);
 			imprimeLetraErrada(letraErrada);
 			imprimePalavra(palavra, acertoTotal);
@@ -614,18 +613,16 @@ int jogoIndividual ()
 				printf("     Letra já digitada!\n");
 
 			} while (controle!=0);
-
-			strcat(letraCerta, &letra);
 			
-
+			letraCerta[contadorLetras] = letra;
+			contadorLetras++;
+			
 			nAcertos = buscaAcertos(palavra, letra, acertoTotal);
 			
-
 			for (i=0; i<30; i++)
 			{
 				acertoTotal[i]=nAcertos[i];
-			}
-
+			}	
 			if (buscaErro(palavra, letra)==1)
 			{
 				letraErrada[erros] = letra;
@@ -679,6 +676,143 @@ int jogoIndividual ()
 	return pontosJogador;
 }
 
+struct Recordes{
+ 
+   char nome1[20];
+   int pontuacao1;
+
+   char nome2[20];
+   int pontuacao2;
+
+   char nome3[20];
+   int pontuacao3;
+ 
+};
+
+void gravarPontuacao(char novoNome[30], int novaPontuacao){
+	
+	FILE *Novo_Recorde; //ponteiro para o arquivo
+	
+	struct Recordes novo;
+	
+	if ((Novo_Recorde = fopen("Recordes", "r+")) == NULL){ //Tenta abrir um arquivo para ler e atualizar os recordes (modo "r+")
+ 
+        Novo_Recorde = fopen("Recordes", "w"); //Se não houver, abre um novo arquivo para gravação (modo "w")
+ 
+       
+ 
+        strcpy(novo.nome1, novoNome); // atribui a primeira pontuacao do jogo
+ 
+        novo.pontuacao1 = novaPontuacao; //inicializa com zero o recorde
+ 
+       
+ 
+        strcpy(novo.nome2, "*****"); // inicializa os demais nomes com asteriscos
+ 
+        novo.pontuacao2 = 0; // inicializa os demais recordes com zero
+ 
+       
+ 
+        strcpy(novo.nome3, "*****"); // inicializa os demais nomes com asteriscos
+ 
+        novo.pontuacao3 = 0; // os demais recordes com zero
+        
+ 
+    } else{ //Caso já exista o arquivo
+ 
+        fseek(Novo_Recorde, 0, SEEK_SET); //posiciona no início
+ 
+        fread(&novo, sizeof(struct Recordes), 1, Novo_Recorde); //lê o arquivo
+ 
+      	
+		if(novaPontuacao > novo.pontuacao1){
+			
+			// passando pontuacao do 2 lugar para o 3 lugar
+			strcpy(novo.nome3, novo.nome2);
+			novo.pontuacao3 = novo.pontuacao2;
+			
+			// passando pontuacao do 1 lugar para o 2 lugar
+			strcpy(novo.nome2, novo.nome1);
+			novo.pontuacao2 = novo.pontuacao1;
+
+        	strcpy(novo.nome1, novoNome);
+         	novo.pontuacao1 = novaPontuacao;
+
+      	}else if(novaPontuacao > novo.pontuacao2){
+      		
+      		// passando pontuacao do 2 lugar para o 3 lugar
+      		strcpy(novo.nome3, novo.nome2);
+			novo.pontuacao3 = novo.pontuacao2;
+
+         	strcpy(novo.nome2, novoNome);
+        	novo.pontuacao2 = novaPontuacao;
+
+      	} else if (novaPontuacao > novo.pontuacao3){
+
+         	strcpy(novo.nome3, novoNome);
+         	novo.pontuacao3 = novaPontuacao;
+
+      	}
+ 
+    }
+ 
+    fseek(Novo_Recorde, 0, SEEK_SET); //Posiciona no início do arquivo
+
+    fwrite(&novo, sizeof(struct Recordes), 1, Novo_Recorde); //faz a gravação do novo recorde
+
+    fclose(Novo_Recorde); //fecha o arquivo
+ 
+       
+}
+
+void mostrarRanking(){
+ 
+	FILE *Novo_Recorde;
+ 
+    struct Recordes novo;
+ 
+ 	system("cls");	
+    printf("\n\t\t    -___-___-___-___-___-___-___-___-___-");
+    printf("\n\n\t\t    -___-___-");
+    printf("     RECORDES");
+    printf("      -___-___-");
+    printf("\n\n\t\t    -___-___-___-___-___-___-___-___-___-");
+ 
+     
+ 
+     if((Novo_Recorde = fopen("Recordes", "r")) == NULL){ //Tenta abrir o arquivo "Recordes" para ler os recordes (modo "r")
+ 
+     	printf("\n\n\t\t       NENHUM RECORDE! SEJA O PRIMEIRO! ");
+ 
+     } else{
+ 
+        fseek(Novo_Recorde, 0, SEEK_SET);
+        fread(&novo, sizeof(struct Recordes), 1, Novo_Recorde);
+ 
+ 
+        printf("\n\n\n\n\n\t\t   PRIMEIRO LUGAR : ");
+        printf("  %s", novo.nome1);
+        printf("\t  %d", novo.pontuacao1);
+ 
+ 
+        printf("\n\n\n\t\t   SEGUNDO LUGAR : ");
+        printf("  %s", novo.nome2);
+        printf("\t  %d", novo.pontuacao2);
+ 
+ 
+        printf("\n\n\n\t\t   TERCEIRO LUGAR : ");
+        printf("%s", novo.nome3);
+        printf("\t  %d", novo.pontuacao3);
+ 
+       
+        fclose(Novo_Recorde);
+ 
+     }
+ 
+     getchar();
+ 
+}
+
 int selecionaJogo (int jogo)
 {
 	int sair=0;
@@ -698,7 +832,6 @@ int selecionaJogo (int jogo)
 
 		case 1:
 			system("cls");
-			getchar();
 			puts("");
 			printf("\n     JOGO INDIVIDUAL ( 1 VS AI )");
 			puts("");
@@ -710,6 +843,9 @@ int selecionaJogo (int jogo)
 			resPontuacao.pontosRanking=jogoIndividual();
 			strcpy (resPontuacao.nomeRanking, nomeJogador);
 			printf("JOGADOR: %s fez %d PONTOS!",resPontuacao.nomeRanking,resPontuacao.pontosRanking);
+			
+			gravarPontuacao(resPontuacao.nomeRanking, resPontuacao.pontosRanking);
+			
 			getchar();
 			sair=0;
 			return sair;
@@ -727,12 +863,11 @@ int selecionaJogo (int jogo)
 			return sair;
 		break;
 		case 3:
-		case 4:
-			sair = 0;
+			mostrarRanking();
 			return sair;
 
 		break;
-		case 5:
+		case 4:
 			printf("\n     Deseja sair? (s ou n): ");
 			scanf(" %c", &confirma);
 			flush_in();
@@ -757,6 +892,7 @@ int selecionaJogo (int jogo)
 	}
 	
 }
+
 
 int imprimeCreditos ()
 {
