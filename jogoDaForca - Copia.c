@@ -45,6 +45,27 @@ int imprimeTrofeu (void)
 	return 1;
 }
 
+int imprimeRanking ()
+{
+	puts("");
+	puts("");
+	puts("                                                \\0/");
+	puts("                                      \\0         |-");
+	puts("                                        |-       / \\       0");
+	puts("                                       / \\   %%%%%%%%%    -|-");
+	puts("                                    %%%%%%%%% %% #1 %%%    / \\");
+	puts("                                    %%%%%%%%% %%%%%%%%% %%%%%%%%% ");
+	puts("");	
+	puts("             @@@@@@@@      @@@@     @@@     @@@ @@@   @@@@  @@@ @@@@    @@@   @@@@@@@@@" );
+	puts("             @@@   @@@    @@@@@@    @@@@@   @@@ @@@ @@@@    @@@ @@@@@   @@@ @@@@        ");
+	puts("             @@@@@@@@@   @@@  @@@   @@@*@@@ @@@ @@@@@@      @@@ @@@ @@@ @@@ @@@   @@@@@@");
+	puts("             @@@ @@@,   @@@@@@@@@@  @@@  @@@@@@ @@@ @@@@    @@@ @@@  @@@@@@ @@@@     @@@");
+	puts("             @@@   @@@ @@@      @@@ @@@    @@@@ @@@   @@@@  @@@ @@@    @@@@   @@@@@@@@@" );
+	puts("");
+	puts("");
+	return 0;
+}
+
 int imprimeForca (int nivel)
 {
 	switch (nivel)
@@ -400,68 +421,33 @@ int imprimePalavra (char palavra[30], int acertos[30])
 
 char * sorteiaPalavra()
 {
-	srand(time(0));
-	int nivel = rand() % 3;
-	int sorteio = rand() % 10;
-	char palavraSorteada[30];
-	char *palavra = palavraSorteada;
+	//leitura de arquivo de palavras para sorteio
+	FILE * arquivo = NULL;
+	char palavras[30][30]={};
+	char texto[30]="\0";
+	int i=0, j=0;
 	
-	char *palavraFacil[10];
-	
-	palavraFacil[0] = "matriz";
-	palavraFacil[1] = "vetor";
-	palavraFacil[2] = "malloc";
-	palavraFacil[3] = "strpuct";
-	palavraFacil[4] = "lwan";
-	palavraFacil[5] = "pascal";
-	palavraFacil[6] = "enigma";
-	palavraFacil[7] = "turing";
-	palavraFacil[8] = "edsac";
-	palavraFacil[9] = "moore";
-	
-	char *palavraNormal[10];
-	
-	palavraNormal[0] = "compilador";
-	palavraNormal[1] = "montadores";
-	palavraNormal[2] = "linguagem";
-	palavraNormal[3] = "neumann";
-	palavraNormal[4] = "processador";
-	palavraNormal[5] = "barramento";
-	palavraNormal[6] = "benchmarks";
-	palavraNormal[7] = "transistor";
-	palavraNormal[8] = "inversor";
-	palavraNormal[9] = "programa";
-	
-	char *palavraDificil[10];
-	
-	palavraDificil[0]= "registradores";
-	palavraDificil[1]= "interpretadores";
-	palavraDificil[2]= "processamento";
-	palavraDificil[3]= "microarquitetura";
-	palavraDificil[4]= "codificadores";
-	palavraDificil[5]= "decodificadores";
-	palavraDificil[6]= "demultiplexadores";
-	palavraDificil[7]= "multiplexadores";
-	palavraDificil[8]= "encapsulamento";
-	palavraDificil[9]= "transceptores";
-	
-	switch (nivel)
+	arquivo = fopen("listaPalavras.txt", "r");
+	if ((arquivo = fopen("listaPalavras.txt", "r"))==NULL)
 	{
-		case 0:
-			strcpy (palavraSorteada, palavraFacil[sorteio]);
-		break;
-		case 1:
-			strcpy (palavraSorteada, palavraNormal[sorteio]);
-		break;
-		case 2:
-			strcpy (palavraSorteada, palavraDificil[sorteio]);
-		break;
+		puts("arquivo não pode ser aberto\n");
+	} else 
+	{
+		for (i=0; i<30; i++)
+		{
+			fscanf (arquivo, "%s", texto);
+			strcpy (palavras[i], texto);
+			//puts(palavras[i]);
+		}
 	}
-	/*
-	puts(palavra);
-	printf("nivel: %d; sorteio: %d\n", nivel, sorteio);
-	*/
-
+	
+	fclose(arquivo);
+	//chave para sorteio de 0 a 29
+	srand(time(0));
+	int sorteio = rand() % 30;
+	char palavraSorteada[30]="\0";
+	char *palavra = palavraSorteada;
+	strcpy (palavraSorteada, palavras[sorteio]);
 	return palavra;
 }
 
@@ -473,7 +459,7 @@ int jogoMultiplayer ()
 	char letraErrada[7] = "\0";
 	char letra=' ';
 	char palavra[30]="\0";
-	char letraCerta[30] = "\0";
+	char letrasDigitadas[30] = "\0";
 	
 	printf("     Digite a palavra a ser adivinhada: ");
 	scanf("%[ -~]", palavra);
@@ -499,7 +485,7 @@ int jogoMultiplayer ()
 		
 			for (i=0, controle=0; i<tamPalavra; i++)
 			{
-				if (letraCerta[i]==letra)
+				if (letrasDigitadas[i]==letra)
 				{
 					controle+=1;
 				}
@@ -507,7 +493,7 @@ int jogoMultiplayer ()
 			printf("     Letra já digitada!\n");
 		} while (controle!=0);
 
-		strcat(letraCerta, &letra);
+		strcat(letrasDigitadas, &letra);
 		
 
 		nAcertos = buscaAcertos(palavra, letra, acertoTotal);
@@ -573,11 +559,11 @@ int jogoIndividual ()
 	{
 		int acertoTotal[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 		int * nAcertos;
-		int i, erros=0, totalPontos = 0, maxPontos = 0, tamPalavra=0, controle=0; 
-		char letraErrada[7] = "\0";
+		int i, erros=0, totalPontos = 0, maxPontos = 0, parcial = 0,tamPalavra=0, controle=0; 
+		char letrasErradas[7] = "\0";
 		char letra=' ';
 		char palavra[30]="\0";
-		char letraCerta[30] = "\0";
+		char letrasDigitadas[30] = "\0";
 		int contadorLetras = 0;
 		
 		strcpy(palavra, sorteiaPalavra());
@@ -590,9 +576,9 @@ int jogoIndividual ()
 			system("cls");
 			printf("     max pontos da palavra: %d\n", maxPontos);
 			printf("     total de pontos obtidos: %d\n", totalPontos);
-			printf("%s", palavra);
+			//printf("     %s", palavra);
 			imprimeForca(erros);
-			imprimeLetraErrada(letraErrada);
+			imprimeLetraErrada(letrasErradas);
 			imprimePalavra(palavra, acertoTotal);
 			puts("");
 			
@@ -602,19 +588,24 @@ int jogoIndividual ()
 				printf("     Digite uma letra da palavra: ");
 				scanf(" %c", &letra);
 				flush_in();
-			
-				for (i=0, controle=0; i<tamPalavra; i++)
+				
+				//verifica se a letra foi digitada anteriormente
+				for (i=0, controle=0; i<strlen(letrasDigitadas); i++)
 				{
-					if (letraCerta[i]==letra)
+					if (letrasDigitadas[i]==letra)
 					{
 						controle+=1;
 					}
 				}
-				printf("     Letra já digitada!\n");
+				
+				if (controle>=1)
+				{
+					printf("     Letra já digitada!\n");
+				}
 
 			} while (controle!=0);
-			
-			letraCerta[contadorLetras] = letra;
+			//correcao de codigo anterior com strcat
+			letrasDigitadas[contadorLetras] = letra;
 			contadorLetras++;
 			
 			nAcertos = buscaAcertos(palavra, letra, acertoTotal);
@@ -625,10 +616,11 @@ int jogoIndividual ()
 			}	
 			if (buscaErro(palavra, letra)==1)
 			{
-				letraErrada[erros] = letra;
+				letrasErradas[erros] = letra;
+				erros += 1;
 			}
 			
-			erros += buscaErro(palavra, letra);
+			//erros += buscaErro(palavra, letra);
 			totalPontos += buscaPontos(palavra, letra);
 
 		} while ((erros<7)&&(totalPontos<maxPontos));
@@ -644,7 +636,13 @@ int jogoIndividual ()
 		puts("");
 		puts("");
 		puts("");
-		pontosJogador+=totalPontos;
+
+		parcial = totalPontos-(erros*10);
+		if (parcial<=0)
+		{
+			parcial=0;
+		}
+		pontosJogador+=parcial;
 
 		if (erros>=7)
 		{
@@ -653,7 +651,7 @@ int jogoIndividual ()
 			imprimeCranio();
 			puts("");
 			puts("           VOCÊ PERDEU!");
-			printf("TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
+			printf("        TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
 			puts("");
 			puts("     <PRESSIONE ENTER PARA VOLTAR AO MENU>");
 			getchar();	
@@ -772,44 +770,33 @@ void mostrarRanking(){
     struct Recordes novo;
  
  	system("cls");	
-    printf("\n\t\t    -___-___-___-___-___-___-___-___-___-");
-    printf("\n\n\t\t    -___-___-");
-    printf("     RECORDES");
-    printf("      -___-___-");
-    printf("\n\n\t\t    -___-___-___-___-___-___-___-___-___-");
+    imprimeRanking ();    
  
-     
+	if((Novo_Recorde = fopen("Recordes", "r")) == NULL){ //Tenta abrir o arquivo "Recordes" para ler os recordes (modo "r")
  
-     if((Novo_Recorde = fopen("Recordes", "r")) == NULL){ //Tenta abrir o arquivo "Recordes" para ler os recordes (modo "r")
+		printf("\n\n\t\t       NENHUM RECORDE! SEJA O PRIMEIRO! ");
  
-     	printf("\n\n\t\t       NENHUM RECORDE! SEJA O PRIMEIRO! ");
+	} else
+	{
+    	fseek(Novo_Recorde, 0, SEEK_SET);
+    	fread(&novo, sizeof(struct Recordes), 1, Novo_Recorde);
+
+    	printf("\n\n\n\n\n\t\t   PRIMEIRO LUGAR : ");
+    	printf("  %s", novo.nome1);
+    	printf("\t  %d", novo.pontuacao1);
  
-     } else{
- 
-        fseek(Novo_Recorde, 0, SEEK_SET);
-        fread(&novo, sizeof(struct Recordes), 1, Novo_Recorde);
- 
- 
-        printf("\n\n\n\n\n\t\t   PRIMEIRO LUGAR : ");
-        printf("  %s", novo.nome1);
-        printf("\t  %d", novo.pontuacao1);
- 
- 
-        printf("\n\n\n\t\t   SEGUNDO LUGAR : ");
-        printf("  %s", novo.nome2);
-        printf("\t  %d", novo.pontuacao2);
- 
- 
-        printf("\n\n\n\t\t   TERCEIRO LUGAR : ");
-        printf("%s", novo.nome3);
-        printf("\t  %d", novo.pontuacao3);
- 
-       
+    	printf("\n\n\n\t\t   SEGUNDO LUGAR : ");
+    	printf("  %s", novo.nome2);
+    	printf("\t  %d", novo.pontuacao2);
+
+    	printf("\n\n\n\t\t   TERCEIRO LUGAR : ");
+    	printf("%s", novo.nome3);
+    	printf("\t  %d", novo.pontuacao3);
+
         fclose(Novo_Recorde);
+	}
  
-     }
- 
-     getchar();
+    getchar();
  
 }
 
@@ -892,6 +879,7 @@ int selecionaJogo (int jogo)
 	}
 	
 }
+
 
 
 int imprimeCreditos ()
