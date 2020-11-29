@@ -1,83 +1,29 @@
-1.1	Regras para multijogadores
+1	Regras para multijogadores no jogo desenvolvido (1vs.1)
 
-Sequência:
-Deve-se informar o número de jogadores e o nome de cada jogador. Caso não o informe, recebe o nome “Jogador #n”.
-O número de jogos vai ser igual o número de jogadores.
-Para cada jogo, um dos jogadores deve informar uma palavra para os demais tentarem adivinhar na sequência. Por consequência, observe-se que o jogador que informa a palavra não participa desse jogo.
-A ordem dos jogos e rodadas é definida a partir da sequência dos próprios jogadores, de modo que o primeiro jogador é o primeiro seguinte aquele que criou a palavra a ser adivinhada.
+A)	Sequência do jogo
+Deve-se informar o nome dos jogadores: jogador 1 e jogador 2. Caso não seja informado, recebem os nomes “Jogador 1” e “Jogador 2”.
+Para cada jogo, um dos jogadores deve informar uma palavra para o outro tentar adivinhar.
 O número máximo de erros possíveis é igual a 7 (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda e perna direita).
-Caso acabe o número de rodadas e ninguém acerte a palavra, o jogador que criou a palavra recebe os pontos do jogador que causou o último erro (última parte do corpo do enforcado), os demais jogadores conservam seus pontos (pontos referentes ao acerto da letra).
+Finalizado o primeiro jogo, deve ser informada a nova palavra para início do segundo jogo. Ao final desse segundo jogo, é mostrado a pontuação de cada jogador e quem foi o vencedor.
 
-Sistema de pontuação:
-Acertar uma letra vale +10 pontos para cada vez que a letra aparece na palavra;
-Errar 1 letra faz com que o número de erros permitidos (7 no total) diminua 1, desenhando uma parte do corpo do enforcado (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda, perna direita), e dá +10 pontos ao criador da palavra;
-Acertar a palavra vale +20 pontos por cada caractere restante ao jogador;
-	
-Exemplo para 3 jogadores (haverá 3 jogos):
-	
-JOGO 1
+B)	Sistema de pontuação
+Acertar uma letra vale (+)10 pontos para cada vez que a letra aparece na palavra;
+Errar 1 letra faz com que o número de erros permitidos (7 no total) diminua 1, desenhando uma parte do corpo do enforcado (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda, perna direita), e faz o jogador perder (-)10 pontos.
 
-Jogador 1 cria a palavra para forca;
+2	Regras para jogador individual
 
-1ª rodada:
+A)	Sequência do jogo
+O jogador é solicitado a inserir seu nome após a seleção do modo de jogo individual. Sendo sorteada uma palavra da lista pré-existente para que seja adivinhada pelo jogador.
+O jogador então é solicitado a sugerir uma letra das letras da palavra. Caso acerte, ganha os pontos referentes a quantidade de vezes que a letra aparece. Caso erre, uma das partes do boneco da forca é desenhada e o jogador perde pontos.
+O número máximo de erros possíveis é igual a 7 (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda e perna direita).
+Finalizado o primeiro jogo, caso o jogador vença, é sorteada nova palavra para início do segundo jogo, e assim sucessivamente. Caso o jogador perca, ou seja, erre sete letras da palavra secreta, o saldo de pontos é mostrado e fornecido a função de ranqueamento para eventual classificação se cabível.
 
-Jogador 2 inicia informando uma letra;
-	Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
-	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado.
-Ao fim da jogada é solicitado se deseja chutar a palavra;
-	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
-
-Jogador 3 inicia informando uma letra (...);
-	
-2ª rodada: (segue a mesma lógica: jogador 2, jogador 3.)
-
-JOGO 2
-
-Jogador 2 cria a palavra para forca;
-
-1ª rodada:
-
-Jogador 3 inicia informando uma letra;
-Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
-	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado
-Ao fim da jogada é solicitado se deseja chutar a palavra;
-	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
-
-Jogador 1 inicia informando uma letra (...);
-	
-2ª rodada: (segue a mesma lógica: jogador 3, jogador 1.)
-
-JOGO 3
-
-Jogador 3 cria a palavra para forca;
-
-1ª rodada:
-
-Jogador 1 inicia informando uma letra;
-Caso a palavra contenha a letra, ganha +10 pontos por vez que essa letra aparece;
-	Caso a palavra não contenha a letra, o jogador que criou a palavra ganha +10 pontos e o programa desenha uma parte do corpo do enforcado
-Ao fim da jogada é solicitado se deseja chutar a palavra;
-	Se errar a palavra, perde todos os pontos e é eliminado deste jogo;
-	Se acertar, o jogo acaba e recebe +20 pontos por cada letra que faltava;
-
-Jogador 2 inicia informando uma letra (...);
-	
-2ª rodada: (segue a mesma lógica: jogador 1, jogador 2.)
-
-Sistema de ranking:
-Ao final de todos os jogos, é gerado um PLACAR FINAL com o nome de cada jogador, palavra criada e pontos totais por jogo e o vencedor é aquele que possuir mais pontos; 
-O nome e os pontos do vencedor são salvos num placar global que exibe os melhores jogadores em ordem decrescente de pontuação; 
-As palavras que não foram adivinhadas serão salvas no placar se SUPER PALAVRAS abaixo do placar de jogadores.
-O placar global, quer será salvo na memória do pc e carregado toda vez que executado o jogo ficaria da seguinte forma:
-
-	PLACAR GLOBAL
-	JOGADOR 2 150 PONTOS
-
-	SUPER PALAVRAS
-	PALAVRA DO JOGADOR 3
+B)	Sistema de pontuação
+Acertar uma letra vale (+)10 pontos para cada vez que a letra aparece na palavra;
+Errar 1 letra faz com que o número de erros permitidos (7 no total) diminua 1, desenhando uma parte do corpo do enforcado (cabeça, tronco, braço esquerdo, braço direito, quadril, perna esquerda, perna direita), e faz o jogador perder (-)10 pontos.
 
 
-REGRAS PARA JOGADOR INDIVIDUAL
+3	Sistema de ranqueamento
 
+O sistema de ranqueamento é fornecido para os jogos do tipo individual, sendo salvo em arquivo externo ao programa.
+A tela de pontuação mostra as três maiores informações existentes em arquivo ou cria uma lista caso não seja encontrado o arquivo.
