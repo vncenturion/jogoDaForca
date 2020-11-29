@@ -5,7 +5,6 @@
 #include <locale.h>
 
 
-
 void flush_in()
 { 
     int ch;
@@ -64,10 +63,10 @@ int imprimeRanking ()
 {
 	puts("");
 	puts("");
-	puts("                                                \\0/");
-	puts("                                      \\0         |-");
-	puts("                                        |-       / \\       0");
-	puts("                                       / \\   %%%%%%%%%    -|-");
+	puts("                                                 \\0/");
+	puts("                                       \\0         |");
+	puts("                                        |-       / \\        0");
+	puts("                                       / \\    %%%%%%%%%    -|-");
 	puts("                                    %%%%%%%%% %% #1 %%%    / \\");
 	puts("                                    %%%%%%%%% %%%%%%%%% %%%%%%%%% ");
 	puts("");	
@@ -344,7 +343,7 @@ int * buscaAcertos(char palavra[30], char letra, int acertos[30])
 		}
 	}
 	
-	return nAcertos;
+	return pAcertos;
 }
 
 int buscaPontos(char palavra[30], char letra)
@@ -506,7 +505,7 @@ int jogoMultiplayer (char jogadorPalavra[30])
 
 	do
 	{
-		system("clear");
+		system("cls");
 		printf("     Palavra criada por: %s\n", jogadorPalavra);
 		printf("     max pontos da palavra: %d\n", maxPontos);
 		printf("     total de pontos obtidos: %d\n", totalPontos);
@@ -557,7 +556,7 @@ int jogoMultiplayer (char jogadorPalavra[30])
 
 	} while ((erros<7)&&(totalPontos<maxPontos));
 	
-	system("clear");
+	system("cls");
 	printf("     max pontos: %d\n", maxPontos);
 	printf("     total de pontos: %d\n", totalPontos);
 	imprimeForca(erros);
@@ -682,7 +681,7 @@ int jogoIndividual ()
 		printf("     max pontos: %d\n", maxPontos);
 		printf("     total de pontos: %d\n", totalPontos);
 		imprimeForca(erros);
-		imprimeLetraErrada(letraErrada);
+		imprimeLetraErrada(letrasErradas);
 		imprimePalavra(palavra, acertoTotal);
 		puts("");
 		puts("\n     FIM DO JOGO!");
@@ -834,16 +833,16 @@ void mostrarRanking(){
     	fseek(Novo_Recorde, 0, SEEK_SET);
     	fread(&novo, sizeof(struct Recordes), 1, Novo_Recorde);
 
-    	printf("\n\n\n\n\n\t\t   PRIMEIRO LUGAR : ");
+    	printf("\n\n\n\n\n\t\t\t     #1 LUGAR : ");
     	printf("  %s", novo.nome1);
     	printf("\t  %d", novo.pontuacao1);
  
-    	printf("\n\n\n\t\t   SEGUNDO LUGAR : ");
+    	printf("\n\n\n\t\t\t     #2 LUGAR : ");
     	printf("  %s", novo.nome2);
     	printf("\t  %d", novo.pontuacao2);
 
-    	printf("\n\n\n\t\t   TERCEIRO LUGAR : ");
-    	printf("%s", novo.nome3);
+    	printf("\n\n\n\t\t\t     #3 LUGAR : ");
+    	printf("  %s", novo.nome3);
     	printf("\t  %d", novo.pontuacao3);
 
         fclose(Novo_Recorde);
@@ -860,7 +859,7 @@ int selecionaJogo (int jogo)
 	char nomeJogador[30]="\0";
 	char nomeJogador1[30]="\0";
 	char nomeJogador2[30]="\0";
-	int pontoJogador=0, pontoJogador2=0;	
+	int pontoJogador1=0, pontoJogador2=0;	
 	int pontoJogador=0;
 	char *jogadorVencedor = nomeJogador;
 	
@@ -897,7 +896,7 @@ int selecionaJogo (int jogo)
 		break;
 		case 2:
 
-			system("clear");
+			system("cls");
 			getchar();
 			puts("");
 			printf("\n     MULTI JOGADOR ( 1 VS 1 )");
@@ -914,7 +913,7 @@ int selecionaJogo (int jogo)
 			puts("");
 			resMultiplayer1.pontosRanking=jogoMultiplayer(resMultiplayer1.nomeRanking);
 			//segundapartida
-			system("clear");
+			system("cls");
 			getchar();
 			puts("");
 			printf("\n     MULTI JOGADOR ( 1 VS 1 )");
@@ -933,7 +932,7 @@ int selecionaJogo (int jogo)
 			
 			if (resMultiplayer1.pontosRanking<resMultiplayer2.pontosRanking)
 			{
-				system("clear");
+				system("cls");
 				puts("");
 				printf("\n     MULTI JOGADOR ( 1 VS 1 )");
 				puts("");
@@ -946,7 +945,7 @@ int selecionaJogo (int jogo)
 
 			} else if (resMultiplayer1.pontosRanking>resMultiplayer2.pontosRanking)
 			{
-				system("clear");
+				system("cls");
 				puts("");
 				printf("\n     MULTI JOGADOR ( 1 VS 1 )");
 				puts("");
@@ -959,7 +958,7 @@ int selecionaJogo (int jogo)
 
 			} else if (resMultiplayer1.pontosRanking==resMultiplayer2.pontosRanking)
 			{
-				system("clear");
+				system("cls");
 				puts("");
 				printf("\n     MULTI JOGADOR ( 1 VS 1 )");
 				puts("");
