@@ -978,6 +978,7 @@ int selecionaJogo (int jogo)
 		break;
 		case 3:
 			mostrarRanking();
+			sair=0
 			return sair;
 
 		break;
