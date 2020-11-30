@@ -575,7 +575,7 @@ int selecionaJogo (int jogo)
 				strcpy(resSingle.nomeRanking, "Jogador Individual");
 			}
 			resSingle.pontosRanking=jogoIndividual();
-			printf("JOGADOR: %s fez %d PONTOS!",resSingle.nomeRanking,resSingle.pontosRanking);
+			printf("     JOGADOR: %s fez %d PONTOS!",resSingle.nomeRanking,resSingle.pontosRanking);
 			
 			gravarPontuacao(resSingle.nomeRanking, resSingle.pontosRanking);
 			getchar();
@@ -666,7 +666,7 @@ int selecionaJogo (int jogo)
 		break;
 		case 3:
 			mostrarRanking();
-			sair=0
+			sair=0;
 			return sair;
 
 		break;
