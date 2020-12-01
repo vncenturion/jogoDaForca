@@ -304,7 +304,7 @@ int telaMenu()
 	puts("");
 	puts("                    1 - JOGO INDIVIDUAL ( 1 VS. PC )");
 	puts("                    2 - JOGO MULTI JOGADOR ( 1 VS. 1 )");
-	puts("                    3 - PONTUACOES");
+	puts("                    3 - PONTUAÇÕES");
 	puts("                    4 - SAIR");
 	puts("");
 	puts("");
@@ -339,7 +339,7 @@ int imprimeCreditos ()
 	puts("                                    EQUIPE DE DESENVOLVIMENTO");
 	puts("");
 	puts("                                 Lucas Vinicius Pessoa de Franca");
-	puts("                                SÃ©rgio Marcelino NÃ³brega de Castro");
+	puts("                                Sérgio Marcelino Nóbrega de Castro");
 	puts("                                Victor Henrique de Amorim Caraubas");
 	puts("                               Vinicius Bezerra Cavalcanti Centurion");
 	puts("");

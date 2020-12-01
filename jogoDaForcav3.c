@@ -219,7 +219,7 @@ int jogoMultiplayer (char jogadorPalavra[30])
 			
 			if (controle>=1)
 			{
-				printf("     Letra já digitada!\n");
+				printf("     Letra ja digitada!\n");
 			}
 
 		} while (controle!=0);
@@ -268,7 +268,7 @@ int jogoMultiplayer (char jogadorPalavra[30])
 		puts("");
 		imprimeCranio();
 		puts("");
-		puts("                 VOCÊ PERDEU!");
+		puts("                 VOCE PERDEU!");
 	  printf("        TOTAL DE PONTOS OBTIDOS: %d\n", totalPontos);
 	  printf("        TOTAL DE PONTOS PERDIDOS: %d\n", (erros*10));
 		puts("");
@@ -280,7 +280,7 @@ int jogoMultiplayer (char jogadorPalavra[30])
 	{
 		imprimeTrofeu();
 		puts("");
-		puts("          PARABENS, VOCÊ VENCEU!");
+		puts("          PARABENS, VOCE VENCEU!");
 	  printf("        TOTAL DE PONTOS OBTIDOS: %d\n", totalPontos);
 	  printf("        TOTAL DE PONTOS PERDIDOS: %d\n", (erros*10));
 		puts("");
@@ -340,7 +340,7 @@ int jogoIndividual ()
 				
 				if (controle>=1)
 				{
-					printf("     Letra já digitada!\n");
+					printf("     letra ja digitada!\n");
 				}
 
 			} while (controle!=0);
@@ -390,7 +390,7 @@ int jogoIndividual ()
 			puts("");
 			imprimeCranio();
 			puts("");
-			puts("           VOCÊ PERDEU!");
+			puts("                VOCE PERDEU!");
 			printf("        TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
 			puts("");
 			puts("     <PRESSIONE ENTER PARA VOLTAR AO MENU>");
@@ -402,7 +402,7 @@ int jogoIndividual ()
 			venceu=1;
 			imprimeTrofeu();
 			puts("");
-			puts("          PARABENS, VOCÊ VENCEU!");
+			puts("          PARABENS, VOCE VENCEU!");
 			printf("        TOTAL DE PONTOS OBTIDOS: %d\n", pontosJogador);
 			puts("");
 			puts("     <PRESSIONE ENTER PARA CONTINUAR>");
