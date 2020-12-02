@@ -6,5 +6,5 @@ O jogo escolhido pela equipe foi o jogo da forca (hangman game), para o qual for
 
 ## :paperclip: Conteúdo adicional
 Juntamente aos códigos foram elaborados:
-* [Relatório](https://github.com/vncenturion/jogoDaForca/blob/main/Relatorio/relatorio.pdf) de desenvolvimento; e,
-* [Vídeo](https://youtu.be/WxlwlNmHDtw) de apresentação do jogo.
+* [Relatório de desenvolvimento](https://github.com/vncenturion/jogoDaForca/blob/main/Relatorio/relatorio.pdf); e,
+* [Vídeo de apresentação](https://youtu.be/WxlwlNmHDtw) do jogo.
